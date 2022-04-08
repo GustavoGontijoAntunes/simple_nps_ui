@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.simple_nps_ui">
    <application
-        android:label="simple_nps_ui"
+        android:label="Simple NPS"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
