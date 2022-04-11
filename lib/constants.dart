@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_nps_ui/size_config.dart';
 
 //colors
 const kPrimaryColor = Color.fromRGBO(91, 91, 255, 1);
@@ -14,7 +13,7 @@ const kPrimaryGradientColor = LinearGradient(
 );
 
 //text
-const kTextColor = Color.fromRGBO(117, 117, 117, 1);
+const kTextColor = Color.fromRGBO(0, 0, 0, 1);
 const kTextAppBarColor = Color.fromRGBO(139, 139, 139, 1);
 const kWordsColor = Color(0xFFC2C2B5);
 const kIconsColor = Color(0xFF8492A2);
@@ -22,7 +21,7 @@ const kGreenColor = Color.fromRGBO(50, 205, 50, 1);
 
 //head
 final kHeadingStyle = TextStyle(
-  fontSize: getProportionateScreenWidth(28),
+  fontSize: 20,
   fontWeight: FontWeight.bold,
   color: Colors.black,
   height: 1.5,

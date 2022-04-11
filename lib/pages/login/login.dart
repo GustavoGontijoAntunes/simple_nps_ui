@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'body.dart';
 
-class Initial extends StatelessWidget {
-  static String routeName = "/initial";
+class Login extends StatelessWidget {
+  static String routeName = "/login";
 
   @override
   Widget build(BuildContext context) {
