@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'body.dart';
 
-class Register extends StatelessWidget {
-  static String routeName = "/register";
+class ForgotPassword extends StatelessWidget {
+  static String routeName = "/forgotPassword";
 
   @override
   Widget build(BuildContext context) {

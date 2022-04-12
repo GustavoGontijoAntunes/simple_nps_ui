@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                  height: 80,
+                  height: 20,
               ),
               Image.asset(
                 "assets/images/Logo.png",
