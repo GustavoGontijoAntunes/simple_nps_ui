@@ -4,6 +4,7 @@ import '../../components/default_button.dart';
 import '../../components/single_line_input_field.dart';
 import '../../components/single_line_input_password_field.dart';
 import '../../components/social_button.dart';
+import '../survey/survey.dart';
 
 class LoginForm extends StatelessWidget {
 
@@ -22,7 +23,9 @@ class LoginForm extends StatelessWidget {
           ),
           DefaultButton(
             text: "ENTRAR",
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, Survey.routeName);
+            },
           ),
           SizedBox(
             height: 20,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/default_button.dart';
 import '../../components/single_line_input_field.dart';
-import '../recover_password/recover_pasword.dart';
+import '../recover_password/recover_password.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
 

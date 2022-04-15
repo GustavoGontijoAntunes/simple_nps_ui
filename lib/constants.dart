@@ -43,3 +43,11 @@ final kDefaultShadow = BoxShadow(
   blurRadius: 10,
   color: Color(0xFFE9E9E9).withOpacity(0.56),
 );
+
+const kTextNps = "O Net Promoter Score é uma metodologia\nde satisfação de clientes desenvolvida para\n" +
+                 "avaliar o grau de fidelidade dos clientes de\nqualquer perfil de empresa.\n\n" +
+                 "A partir da realização da pesquisa NPS\nfeita através de uma pergunta, o cálculo é\n" +
+                 "realizado. Segundo a reposta dada, os\nclientes são classificados em 3 grupos\ndistintos:\n\n" +
+                 "1. Promotores (nota 9 ou 10)\n2. Neutros (nota 7 ou 8)\n3. Detratores (nota de 0 a 6)\n\n" +
+                 "O grupo 2 (Neutros) é desconsiderado do\ncálculo. Em vista disso, este é realizado:\n\n" +
+                 "% CLIENTES PROMOTORES – % CLIENTES\n DETRATORES = NPS\n\nResultado:";
