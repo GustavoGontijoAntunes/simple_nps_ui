@@ -6,6 +6,9 @@ import '../../../constants.dart';
 import 'body.dart';
 
 class FinishedSurvey extends StatelessWidget {
+  static String routeName = "/finishedSurvey";
+
+  const FinishedSurvey({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

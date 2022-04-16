@@ -6,6 +6,7 @@ import '../../../constants.dart';
 import 'body.dart';
 
 class OngoingSurvey extends StatefulWidget {
+  const OngoingSurvey({Key? key}) : super(key: key);
 
   @override
   State<OngoingSurvey> createState() => _OngoingSurveyState();

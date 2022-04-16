@@ -2,29 +2,40 @@ class Survey {
   final int id;
   final int user_id;
   final String title;
-  final DateTime completion_date;
+  DateTime? completion_date;
 
   Survey({
     required this.id,
     required this.user_id,
     required this.title,
-    required this.completion_date,
+    this.completion_date,
   });
 }
 
-List<Survey> demoSurveys = [
+List<Survey> demoOngoingSurveys = [
   Survey(
     id: 1,
     user_id: 1,
     title: "Pesquisa de Satisfação 1",
-    completion_date: DateTime(2022, 04, 15, 16, 00),
   ),
   Survey(
     id: 2,
     user_id: 1,
     title: "Pesquisa de Satisfação 2",
-    completion_date: DateTime(2022, 04, 16, 16, 00),
   ),
+  Survey(
+    id: 5,
+    user_id: 1,
+    title: "Pesquisa de Satisfação 5",
+  ),
+  Survey(
+    id: 6,
+    user_id: 1,
+    title: "Pesquisa de Satisfação 6",
+  ),
+];
+
+List<Survey> demoFinishedSurveys = [
   Survey(
     id: 3,
     user_id: 1,

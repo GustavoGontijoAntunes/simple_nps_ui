@@ -5,6 +5,8 @@ import 'body.dart';
 class ForgotPassword extends StatelessWidget {
   static String routeName = "/forgotPassword";
 
+  const ForgotPassword({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

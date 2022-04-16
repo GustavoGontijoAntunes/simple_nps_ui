@@ -37,4 +37,28 @@ List<Answer> demoAnswers = [
     value: 9,
     date: DateTime(2022, 04, 18, 16, 00),
   ),
+  Answer(
+    id: 5,
+    survey_id: 3,
+    value: 3,
+    date: DateTime(2022, 04, 15, 16, 00),
+  ),
+  Answer(
+    id: 6,
+    survey_id: 3,
+    value: 10,
+    date: DateTime(2022, 04, 16, 16, 00),
+  ),
+  Answer(
+    id: 7,
+    survey_id: 3,
+    value: 6,
+    date: DateTime(2022, 04, 17, 16, 00),
+  ),
+  Answer(
+    id: 8,
+    survey_id: 3,
+    value: 8,
+    date: DateTime(2022, 04, 18, 16, 00),
+  ),
 ];

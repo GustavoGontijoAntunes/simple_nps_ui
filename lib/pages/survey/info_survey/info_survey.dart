@@ -6,6 +6,7 @@ import '../../../constants.dart';
 import 'body.dart';
 
 class InfoSurvey extends StatelessWidget {
+  const InfoSurvey({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

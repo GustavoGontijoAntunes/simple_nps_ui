@@ -12,7 +12,7 @@ alertDialogSignOut(BuildContext context) {
             "Sair",
           ),
           content: Text(
-              "Você tem certeza que deseja\n sair da aplicação?"
+            "Você tem certeza que deseja\n sair da aplicação?"
           ),
           actions: [
             ElevatedButton(

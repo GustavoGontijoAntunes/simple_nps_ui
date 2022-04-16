@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import '../pages/survey/answer/answer.dart';
 
 alertDialogAddSurvey(BuildContext context, Key key) {
+  TextEditingController _controller = new TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -19,7 +23,7 @@ alertDialogAddSurvey(BuildContext context, Key key) {
                 left: 40
             ),
             content: Form(
-              key: key,
+              key: _formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -33,6 +37,13 @@ alertDialogAddSurvey(BuildContext context, Key key) {
                     decoration: InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                     ),
+                    controller: _controller,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor, digite o nome da pesquisa.";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -61,7 +72,12 @@ alertDialogAddSurvey(BuildContext context, Key key) {
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.pushNamed(
+                                context, Answer.routeName, arguments: {"name": _controller.text});
+                          }
+                        },
                         child: Container(
                           width: 80,
                           child: Center(

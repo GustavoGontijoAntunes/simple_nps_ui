@@ -10,12 +10,14 @@ import '../../components/alert_dialog_sign_out.dart';
 class Survey extends StatefulWidget {
   static String routeName = "/survey";
 
+  const Survey({Key? key}) : super(key: key);
+
   @override
   _SurveyState createState() => _SurveyState();
 }
 
 class _SurveyState extends State<Survey> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   final screens = [
     InfoSurvey(),
     OngoingSurvey(),

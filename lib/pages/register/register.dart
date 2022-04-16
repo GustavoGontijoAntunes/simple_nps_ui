@@ -5,6 +5,8 @@ import 'body.dart';
 class Register extends StatelessWidget {
   static String routeName = "/register";
 
+  const Register({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

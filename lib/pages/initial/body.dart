@@ -5,11 +5,14 @@ import '../login/login.dart';
 import '../register/register.dart';
 
 class Body extends StatelessWidget {
+
+  const Body({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       height: size.height,
       width: double.infinity,
       child: Column(

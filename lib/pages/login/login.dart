@@ -7,6 +7,8 @@ class Login extends StatelessWidget {
   static String routeName = "/login";
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
+  Login({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
