@@ -81,7 +81,7 @@ class _BodyState extends State<Body> {
                 Navigator.pushNamed(context, AnswerSent.routeName, arguments: {"name": widget.title});
               }
               else{
-                alertDialogError(context);
+                alertDialogError(context, "Erro", "Por favor, selecione uma nota.");
               }
             },
           ),

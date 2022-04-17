@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:simple_nps_ui/constants.dart';
 
-alertDialogError(BuildContext context) {
+alertDialogError(BuildContext context, String title, String message) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            "Erro",
+            title,
           ),
           content: Text(
-            "Por favor, selecione uma nota."
+            message
           ),
           actions: [
             ElevatedButton(

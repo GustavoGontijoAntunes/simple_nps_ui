@@ -5,7 +5,6 @@ import 'body.dart';
 
 class Login extends StatelessWidget {
   static String routeName = "/login";
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   Login({Key? key}) : super(key: key);
 

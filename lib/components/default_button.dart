@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class DefaultButton extends StatelessWidget {
+
+  final String? text;
+  final Function? press;
+  final bool showProgress;
+
   const DefaultButton({
     Key? key,
     this.text,
     this.press,
+    this.showProgress = false,
   }) : super(key: key);
-  final String? text;
-  final Function? press;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +28,22 @@ class DefaultButton extends StatelessWidget {
           backgroundColor: kPrimaryColor,
         ),
         onPressed: press as void Function()?,
-        child: Text(
-          text!,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        child: showProgress
+          ? Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Colors.white
+              ),
+            ),
+          )
+          : Text(
+            text!,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
       ),
     );
   }

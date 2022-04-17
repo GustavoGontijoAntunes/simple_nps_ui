@@ -1,31 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import '../../components/alert_dialog_error.dart';
 import '../../components/default_button.dart';
-import '../../components/single_line_input_field.dart';
-import '../../components/single_line_input_password_field.dart';
+import '../../components/form_error.dart';
 import '../../components/social_button.dart';
+import '../../constants.dart';
+import '../../services/login_api.dart';
+import '../forgot_password/forgot_password.dart';
 import '../survey/survey.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
+  final List<String> errors = [];
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  String? email;
+  String? password;
+  bool _showProgress = false;
+
+  void addError({required String error}){
+    if(!widget.errors.contains(error)){
+      setState(() {
+        widget.errors.add(error);
+      });
+    }
+  }
+
+  void removeError({String? error}){
+    if(widget.errors.contains(error)){
+      setState(() {
+        widget.errors.remove(error);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
     return Form(
+      key: _formKey,
       child: Column (
         children: [
-          SingleLineInputField(
-            labelText: "E-MAIL",
-          ),
-          SingleLineInputPasswordField(
-            labelText: "SENHA",
-            showForgotPasswordButton: true,
-          ),
+          emailTextFormField(),
+          passwordFormField(),
+          FormError(errors: widget.errors),
           DefaultButton(
             text: "ENTRAR",
             press: () {
-              Navigator.pushNamed(context, Survey.routeName);
+              _onClickButton(context);
             },
+            showProgress: _showProgress,
           ),
           SizedBox(
             height: 20,
@@ -54,9 +83,166 @@ class LoginForm extends StatelessWidget {
                 color: Color.fromRGBO(235, 67, 53, 1),
               ),
             ],
-          )
+          ),
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );
+  }
+
+  Container emailTextFormField(){
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 50,
+        vertical: 30,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "E-MAIL",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          TextFormField(
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(40),
+            ],
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+            ),
+            onSaved: (newValue) {
+              email = newValue!;
+            },
+            onChanged: (value){
+              if (value.isNotEmpty) {
+                removeError(error: kEmailNullError);
+              }
+              else if(kEmailValidatorRegExp.hasMatch(value)){
+                removeError(error: email);
+              }
+
+              return null;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                addError(error: kEmailNullError);
+                return "";
+              }
+              else if(!kEmailValidatorRegExp.hasMatch(value)){
+                addError(error: kInvalidEmailError);
+                return "";
+              }
+
+              return null;
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container passwordFormField(){
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 50,
+        vertical: 10,
+      ),
+      child: Column (
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "SENHA",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+            ),
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(100),
+            ],
+            onSaved: (newValue){
+              password = newValue;
+            },
+            onChanged: (value){
+              if (value.isNotEmpty) {
+                removeError(error: kPasswordNullError);
+              }
+              else if(value.length >= 8){
+                removeError(error: kShortPasswordError);
+              }
+
+              return null;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                addError(error: kPasswordNullError);
+                return "";
+              }
+              else if(value.length < 8){
+                addError(error: kShortPasswordError);
+                return "";
+              }
+
+              return null;
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, ForgotPassword.routeName);
+                },
+                child: Text(
+                  "Esqueceu a senha?",
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    fontSize: 15,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future _onClickButton(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState?.save();
+
+      setState(() {
+        _showProgress = true;
+      });
+
+      var user = await LoginApi.login(email!, password!);
+
+      if(user != null) {
+        Navigator.pushNamed(context, Survey.routeName);
+      }else{
+        alertDialogError(context, "Erro", kInvalidLoginError);
+      }
+
+      setState(() {
+        _showProgress = false;
+      });
+    }
+
   }
 }
