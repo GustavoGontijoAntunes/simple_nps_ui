@@ -6,35 +6,35 @@ import '../../components/default_button.dart';
 import '../../components/form_error.dart';
 import '../../components/social_button.dart';
 import '../../constants.dart';
-import '../../services/login_api.dart';
+import '../../services/security_api.dart';
 import '../forgot_password/forgot_password.dart';
 import '../survey/survey.dart';
 
 class LoginForm extends StatefulWidget {
-  final List<String> errors = [];
 
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final List<String> errors = [];
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
   bool _showProgress = false;
 
   void addError({required String error}){
-    if(!widget.errors.contains(error)){
+    if(!errors.contains(error)){
       setState(() {
-        widget.errors.add(error);
+        errors.add(error);
       });
     }
   }
 
   void removeError({String? error}){
-    if(widget.errors.contains(error)){
+    if(errors.contains(error)){
       setState(() {
-        widget.errors.remove(error);
+        errors.remove(error);
       });
     }
   }
@@ -48,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           emailTextFormField(),
           passwordFormField(),
-          FormError(errors: widget.errors),
+          FormError(errors: errors),
           DefaultButton(
             text: "ENTRAR",
             press: () {
@@ -96,7 +96,7 @@ class _LoginFormState extends State<LoginForm> {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 50,
-        vertical: 30,
+        vertical: 20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +152,7 @@ class _LoginFormState extends State<LoginForm> {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 50,
-        vertical: 10,
+        vertical: 20,
       ),
       child: Column (
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +170,7 @@ class _LoginFormState extends State<LoginForm> {
               floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
             inputFormatters: [
-              LengthLimitingTextInputFormatter(100),
+              LengthLimitingTextInputFormatter(30),
             ],
             onSaved: (newValue){
               password = newValue;
@@ -231,7 +231,7 @@ class _LoginFormState extends State<LoginForm> {
         _showProgress = true;
       });
 
-      var user = await LoginApi.login(email!, password!);
+      var user = await SecurityApi.login(email!, password!);
 
       if(user != null) {
         Navigator.pushNamed(context, Survey.routeName);

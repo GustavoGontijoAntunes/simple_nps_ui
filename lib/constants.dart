@@ -33,6 +33,7 @@ RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 const String kEmailNullError = "Por favor, digite o seu e-mail";
 const String kInvalidEmailError = "Por favor, digite um e-mail válido";
 const String kPasswordNullError = "Por favor, digite a sua senha";
+const String kConfirmPasswordNullError = "Por favor, digite a confirmação de sua senha";
 const String kShortPasswordError = "A senha é muito pequena";
 const String kMatchPasswordError = "As senhas não são iguais";
 const String kInvalidLoginError = "Login inválido";

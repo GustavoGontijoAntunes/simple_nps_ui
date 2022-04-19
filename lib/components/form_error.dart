@@ -31,10 +31,15 @@ class FormError extends StatelessWidget {
         SizedBox(
           width: 10,
         ),
-        Text(
-          error,
-          style: TextStyle(
-            color: Colors.red,
+        Expanded(
+          child: Text(
+            error,
+            style: TextStyle(
+              color: Colors.red,
+            ),
+            softWrap: false,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
